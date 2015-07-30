@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Llevame
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          =link_to "Inicio", root_path, class: "navbar-brand"
+          =link_to "Acerca de Nosotros", "#", class: "navbar-text"
+          =link_to "Dona", "#", class: "navbar-text"
+    = yield
