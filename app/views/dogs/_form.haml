@@ -1,0 +1,76 @@
+.container
+  .row
+    .col-md-12
+      = form_for(@dog) do |f|
+        - if @dog.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@dog.errors.count, "error")
+              prohibited this dog from being saved:
+            %ul
+              - @dog.errors.full_messages.each do |message|
+                %li= message
+        .row
+          .col-md-6
+            .form-group
+              Nombre del perro
+              %br/
+              = f.text_field :name, class: "form-control"
+
+            .form-group
+              Edad del perro
+              %br/
+              = f.text_field :age, class: "form-control"
+
+            .form-group
+              Breve descripción acerca de tu mascota
+
+              %br/
+              = f.text_area :description, class: "form-control", placeholder: "Puedes describir brevemente como es tu mascota o las razones por las cuales lo pones en adopción"
+
+            .form-group
+              Señas Particulares
+
+              %br/
+              = f.text_field :particular_signals, class: "form-control"
+            .form-group
+              Nombre del propietario
+
+              %br/
+              = f.text_field :owner_name, class: "form-control"
+
+            .form-group
+              Email del propietario
+
+              %br/
+              = f.text_field :owner_email, class: "form-control"
+          .col-md-6
+            .form-group
+              Telefono del propietario
+              %br/
+              = f.text_field :owner_phone, class: "form-control"
+
+            .form-group
+              Contraseña
+              .small Crea una contraseña para editar/eliminar esta publicación y saber que tu eres el creador de esta publicación
+              %br/
+              = f.text_field :password, class: "form-control"
+
+            .form-group
+              = f.label :lat
+              %br/
+
+              = f.text_field :lat, class: "form-control"
+
+            .form-group
+              = f.label :lng
+              %br/
+              = f.text_field :lng, class: "form-control"
+
+            .form-group
+              = f.label :breed_id
+              %br/
+              = f.collection_select :breed_id, get_breeds, :id, :name, include_blank: false, class: "form-control"
+
+            .actions
+              = f.submit
