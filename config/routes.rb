@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :dogs
+  resources :dogs do
+    resources :photos, only: [:new, :create]
+  end
 
   resources :breeds
 

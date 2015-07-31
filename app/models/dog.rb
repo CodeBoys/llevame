@@ -1,4 +1,5 @@
 class Dog < ActiveRecord::Base
   belongs_to :breed
-  scope :recents, -> {Dog.last(10)}
+  has_many :photos
+  scope :recents, -> {Dog.last(15)}
 end

@@ -26,8 +26,14 @@ class DogsController < ApplicationController
   def create
     @dog = Dog.new(dog_params)
 
+
     respond_to do |format|
       if @dog.save
+        if params[:photos]
+          params[:photos].each do |photo|
+            @dog.photos.create(photo: photo)
+          end
+        end
         format.html { redirect_to @dog, notice: 'Dog was successfully created.' }
         format.json { render :show, status: :created, location: @dog }
       else

@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12
-      = form_for(@dog) do |f|
+      = form_for @dog, :html => { :role => "form", :multipart => true } do |f|
         - if @dog.errors.any?
           #error_explanation
             %h2
@@ -70,7 +70,10 @@
             .form-group
               = f.label :breed_id
               %br/
-              = f.collection_select :breed_id, get_breeds, :id, :name, include_blank: false, class: "form-control"
+              = f.collection_select :breed_id, get_breeds, :id, :name, include_blank: false
 
-            .actions
+            .form-group
+              Fotos
+              =file_field_tag "photos[]", type: :file, multiple: true
+            .form-actions
               = f.submit

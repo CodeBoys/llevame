@@ -1,3 +1,23 @@
 .container
   %h1 Bienvenido
-  =link_to "Ver perros", dogs_path
+  %table
+    %thead
+      %th Nombre
+      %th Edad
+      %th Raza
+      %th Foto
+      %th Acciones
+    %tbody
+      -@recents_dogs.each do |dog|
+        %tr
+          %td
+            =dog.name
+          %td
+            =dog.age
+          %td
+            =dog.breed.name
+          %td
+            =image_tag dog.photos.first.photo.url(:mini)
+          %td
+            =link_to "Ver Perro", dog_path(dog.id)
+  =link_to "Ver perros", dogs_path, class: "btn btn-info"

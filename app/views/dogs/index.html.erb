@@ -31,7 +31,7 @@
         <td><%= dog.password %></td>
         <td><%= dog.lat %></td>
         <td><%= dog.lng %></td>
-        <td><%= dog.breed %></td>
+        <td><%= dog.breed.name %></td>
         <td><%= link_to 'Show', dog %></td>
         <td><%= link_to 'Edit', edit_dog_path(dog) %></td>
         <td><%= link_to 'Destroy', dog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
