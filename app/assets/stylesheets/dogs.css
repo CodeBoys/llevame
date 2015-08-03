@@ -1,0 +1,84 @@
+.menu
+{
+  padding: 0;
+  color: #FFF;
+  border-radius: 0;
+  margin: 0;
+  border: 0;
+  height: 80px;
+  background: rgba(17, 77, 128, 1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+
+.navbar-header .navbar-brand
+{
+  height: 100%;
+  color: #FFF;
+  line-height: 40px;
+}
+
+.nav-header
+{
+  height: 100%;
+}
+
+.navbar-header .navbar-text
+{
+  padding: 0
+  height: 100%;
+  color: #FFF;
+  margin: 0 2 0 2;
+  line-height: 40px;
+}
+
+.container-fluid
+{
+  height: 100%;
+}
+
+.big_button
+{
+  color: #FFF;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  font-size: 16px;
+  padding: 0;
+}
+
+.header_index
+{
+  margin-top: 80px;
+  background: url("header.jpg") no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+    background-size: cover;
+  width: 100%;
+  height: 343px;
+}
+
+.content_header
+{
+  color: #FFF;
+}
+
+body .normal_text
+{
+}
+
+.content_header .small
+{
+  color: #FFF;
+}
+
+a.big_button:visited
+{
+  color: #FFF;
+}
+
+

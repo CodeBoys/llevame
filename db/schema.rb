@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150730175452) do
     t.float    "lng"
     t.string   "password"
     t.integer  "breed_id"
+    t.boolean  "anonymous"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

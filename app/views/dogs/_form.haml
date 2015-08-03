@@ -75,5 +75,6 @@
             .form-group
               Fotos
               =file_field_tag "photos[]", type: :file, multiple: true
+              =f.hidden_field :anonymous, value: true
             .form-actions
               = f.submit

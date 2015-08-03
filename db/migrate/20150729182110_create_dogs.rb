@@ -12,7 +12,7 @@ class CreateDogs < ActiveRecord::Migration
       t.float :lng
       t.string :password
       t.belongs_to :breed, index: true
-
+      t.boolean :anonymous
       t.timestamps
     end
   end
