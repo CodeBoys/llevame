@@ -25,11 +25,13 @@ class DogsController < ApplicationController
   # POST /dogs.json
   def create
     @dog = Dog.new(dog_params)
+    #binding.pry
     respond_to do |format|
       if @dog.save
         if params[:photos]
-          params[:photos].each do |photo|
-            @dog.photos.create(photo: photo)
+          params[:photos].first.each do |photo|
+            binding.pry
+            @dog.photos.create(photo: photo[1])
           end
         end
         format.html { redirect_to @dog, notice: 'Dog was successfully created.' }

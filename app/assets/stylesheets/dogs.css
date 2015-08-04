@@ -76,9 +76,28 @@ body .normal_text
   color: #FFF;
 }
 
-a.big_button:visited
+.btn_white_font
 {
   color: #FFF;
 }
 
+a.btn_white_font:visited
+{
+  color: #FFF;
+}
+
+.mycontainer
+{
+  margin-top: 80px;
+}
+
+/*
+.dz-preview
+{
+  border: 1px solid;
+  padding: 5px;
+  border-radius: 5px;
+  min-height: 20px;
+}
+*/
 

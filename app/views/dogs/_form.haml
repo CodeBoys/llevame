@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12
-      = form_for @dog, :html => { :role => "form", :multipart => true } do |f|
+      = form_for @dog, :html => { :role => "form", :multipart => true, id: "new-dog", class: "new_dog dropzone"} do |f|
         - if @dog.errors.any?
           #error_explanation
             %h2
@@ -73,8 +73,37 @@
               = f.collection_select :breed_id, get_breeds, :id, :name, include_blank: false
 
             .form-group
-              Fotos
-              =file_field_tag "photos[]", type: :file, multiple: true
               =f.hidden_field :anonymous, value: true
             .form-actions
-              = f.submit
+              = f.submit 'Ponerlo en adopcion', class: "btn btn-success btn_white_font", id: "sbmtbtn"
+              = link_to 'Cancelar', dogs_path, class: "btn btn-danger btn_white_font"
+        .photos
+          %h3 Sube hasta 5 fotos de tu perro para que los usuarios lo conozcan
+          #dropzonePreview
+
+:javascript
+  $(document).ready(function(){
+    Dropzone.options.newDog = {
+      autoProcessQueue: false,
+      uploadMultiple: true,
+      parallelUploads: 5,
+      maxFiles: 5,
+      previewsContainer: '#dropzonePreview',
+      paramName: "photos[]",
+
+      // The setting up of the dropzone
+      init: function() {
+
+        var myDropzone = this;
+            //now we will submit the form when the button is clicked
+            $("#sbmtbtn").on('click',function(e) {
+               e.preventDefault();
+               myDropzone.processQueue(); // this will submit your form to the specified action path
+              // after this, your whole form will get submitted with all the inputs + your files and the php code will remain as usual
+        //REMEMBER you DON'T have to call ajax or anything by yourself, dropzone will take care of that
+            });
+
+          } // init end
+    };
+  });
+
