@@ -89,15 +89,23 @@ a.btn_white_font:visited
 .mycontainer
 {
   margin-top: 80px;
+  margin-bottom: 20px;
 }
 
-/*
-.dz-preview
+
+body .dropzone .dz-default
+{
+  height: 120px;
+  margin: 0;
+  padding: 30px;
+  background: rgba(118, 155, 9, 0.23);
+}
+
+#dropzonePreview
 {
   border: 1px solid;
-  padding: 5px;
   border-radius: 5px;
-  min-height: 20px;
+  border-color: #CCC;
 }
-*/
+
 
