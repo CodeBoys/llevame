@@ -32,6 +32,7 @@ gem 'paperclip'
 gem 'pry'
 gem 'jquery-turbolinks'
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
+gem 'paperclip-dropbox'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

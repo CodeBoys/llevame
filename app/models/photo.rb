@@ -1,6 +1,8 @@
 class Photo < ActiveRecord::Base
   belongs_to :dog
   has_attached_file :photo,
+    :storage => :dropbox,
+    :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
     :styles => {
 		  :medium => ["600x*>", :jpg], :mini => ["60x60#", :jpg]
     },
@@ -8,6 +10,7 @@ class Photo < ActiveRecord::Base
       :mini => "-quality 50 -strip",
       :medium  => "-quality 85 -strip"
       }
+
 
   # Validate content type
   validates_attachment :photo,
