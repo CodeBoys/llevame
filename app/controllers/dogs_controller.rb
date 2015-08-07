@@ -24,7 +24,7 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
-    biding.pry
+    binding.pry
     @dog = Dog.new(dog_params)
     respond_to do |format|
       if @dog.save
