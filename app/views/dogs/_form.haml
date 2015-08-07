@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12
-      = form_for @dog, :html => { :role => "form", :multipart => true, id: "new-dog", class: "new_dog dropzone"} do |f|
+      = form_for @dog, :html => { :role => "form", :multipart => true, id: "new-dog", class: "new_dog dropzone"}, validate: true do |f|
         - if @dog.errors.any?
           #error_explanation
             %h2
@@ -44,6 +44,11 @@
 
               %br/
               = f.text_field :owner_email, class: "form-control"
+            .form-group
+              Confirmar email
+              %br/
+              = f.text_field :owner_email_confirmation, class: "form-control"
+
           .col-md-6
             .form-group
               Telefono del propietario
@@ -94,12 +99,24 @@
 
       // The setting up of the dropzone
       init: function() {
-
         var myDropzone = this;
             //now we will submit the form when the button is clicked
             $("#sbmtbtn").on('click',function(e) {
-               e.preventDefault();
-               myDropzone.processQueue(); // this will submit your form to the specified action path
+              e.preventDefault();
+              $("input").trigger("focusout");
+              if ($(".field_with_errors").length >= 1)
+              {
+                 console.log("Corrige todos los errores antes de continuar");
+              }else{
+                if (myDropzone.files.length == 0)
+                {
+                  debugger
+                  var mockFile = { name: "something.jpg", size: 12345 }; // here we get the file name and size as response
+                  myDropzone.options.addedfile.call(myDropzone, mockFile);
+                  //thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "uploadsfolder/"+value.name);//uploadsfolder is the folder where you have all those uploaded files
+                  myDropzone.processQueue();
+                }
+              }// this will submit your form to the specified action path
               // after this, your whole form will get submitted with all the inputs + your files and the php code will remain as usual
         //REMEMBER you DON'T have to call ajax or anything by yourself, dropzone will take care of that
             });

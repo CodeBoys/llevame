@@ -108,4 +108,23 @@ body .dropzone .dz-default
   border-color: #CCC;
 }
 
+.form-group .field_with_errors
+{
+  background: #FFF;
+}
 
+.form-group .field_with_errors
+{
+  width: 100%;
+}
+
+.form-group label.message
+{
+  color: #F32C2C;
+  width: 274px;
+  padding: 3px;
+  padding-left: 30px;
+  border-radius: 5px;
+  margin-top: 3px;
+  background: url("error.png") no-repeat;
+}

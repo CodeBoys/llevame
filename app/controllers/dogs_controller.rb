@@ -24,13 +24,12 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
+    biding.pry
     @dog = Dog.new(dog_params)
-    #binding.pry
     respond_to do |format|
       if @dog.save
         if params[:photos]
           params[:photos].first.each do |photo|
-            binding.pry
             @dog.photos.create(photo: photo[1])
           end
         end
@@ -75,6 +74,6 @@ class DogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
-      params.require(:dog).permit(:name, :age, :description, :particular_signals, :owner_name, :owner_email, :owner_phone, :lat, :lng, :breed_id, :anonymous)
+      params.require(:dog).permit(:name, :age, :description, :particular_signals, :owner_name, :owner_email, :owner_phone, :lat, :lng, :breed_id, :anonymous, :password)
     end
 end
