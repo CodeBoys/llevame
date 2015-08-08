@@ -1,0 +1,39 @@
+.header_index
+  .container
+    .content_header
+      %h2
+        Bienvenido a Llevame Contigo
+        .small LLevame Contigo es un proyecto que busca unir a las personas que bucan adoptar y dar en adopcion a perros
+%br
+%br
+.container
+  .row
+    .col-md-8
+      .table-responsive
+        %h3 Perros recientemente puestos en adopcion
+        %table.table.table-striped.table-hover
+          %thead
+            %tr
+              %th Nombre
+              %th Edad
+              %th Raza
+              %th Foto
+              %th Conocelo
+          %tbody
+            -@recents_dogs.each do |dog|
+              %tr
+                %td
+                  =dog.name
+                %td
+                  =dog.age
+                %td
+                  =dog.breed.name
+                %td
+                  =get_first_photo(dog)
+                %td
+                  =link_to "Conocer a #{dog.name}", dog_path(dog.id)
+    .col-md-4
+      =link_to "Buscar para adoptar", "#", class: "btn btn-info big_button btn_white_font"
+      %br
+      %br
+      =link_to "Poner en adopcion", new_dog_path, class: "btn btn-success big_button btn_white_font"

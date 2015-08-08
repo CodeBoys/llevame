@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  age: 1
+  description: MyText
+  particular_signals: MyString
+  owner_name: MyString
+  owner_email: MyString
+  owner_phone: MyString
+  lat: 1.5
+  lng: 1.5
+  breed_id: 
+
+two:
+  name: MyString
+  age: 1
+  description: MyText
+  particular_signals: MyString
+  owner_name: MyString
+  owner_email: MyString
+  owner_phone: MyString
+  lat: 1.5
+  lng: 1.5
+  breed_id: 
