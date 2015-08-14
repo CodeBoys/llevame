@@ -1,5 +1,5 @@
 class DogsController < ApplicationController
-  before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  before_action :set_dog, only: [:show, :edit, :update, :destroy, :select_location]
 
   # GET /dogs
   # GET /dogs.json
@@ -24,7 +24,6 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
-    binding.pry
     @dog = Dog.new(dog_params)
     respond_to do |format|
       if @dog.save
@@ -33,25 +32,11 @@ class DogsController < ApplicationController
             @dog.photos.create(photo: photo[1])
           end
         end
-        format.html { redirect_to @dog, notice: 'Dog was successfully created.' }
-        format.json { render :show, status: :created, location: @dog }
+        format.html { redirect_to action: "select_location", id: @dog.id }
+        format.json { render js: "window.location.href=buscar_ubicacion?id='"+@dog.id+"'"  }
       else
         format.html { render :new }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /dogs/1
-  # PATCH/PUT /dogs/1.json
-  def update
-    respond_to do |format|
-      if @dog.update(dog_params)
-        format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dog }
-      else
-        format.html { render :edit }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
+        format.js { render json: @dog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,6 +49,13 @@ class DogsController < ApplicationController
       format.html { redirect_to dogs_url, notice: 'Dog was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def select_location
+  end
+
+  def set_location
+
   end
 
   private
