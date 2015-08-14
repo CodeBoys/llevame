@@ -33,24 +33,10 @@ class DogsController < ApplicationController
           end
         end
         format.html { redirect_to action: "select_location", id: @dog.id }
-        format.json { render :show, status: :created, location: @dog }
+        format.json { render js: "window.location.href=buscar_ubicacion?id='"+@dog.id+"'"  }
       else
         format.html { render :new }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /dogs/1
-  # PATCH/PUT /dogs/1.json
-  def update
-    respond_to do |format|
-      if @dog.update(dog_params)
-        format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dog }
-      else
-        format.html { render :edit }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
+        format.js { render json: @dog.errors, status: :unprocessable_entity }
       end
     end
   end
