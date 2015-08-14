@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require dropzone
 //= require rails.validations
+//= require underscore
+//= require gmaps/google
 //= require_tree .

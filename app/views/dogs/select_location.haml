@@ -1,0 +1,16 @@
+.container
+  %h3 Selecciona tu ubicacion
+  #mensajes
+
+  = form_tag("/set_location", method: "put") do |f|
+    / map div
+    #map{:style => "width: 1200px; height: 500px;"}
+    %input.form-control{:type => "hidden", name: "lat", id: "lat"}
+    %input.form-control{:type => "hidden", name: "lng", id: "lng"}
+    %button.btn.btn-success{:type => "button", :type => 'submit'} Esablecer
+
+  :javascript
+    $(document).ready(function(){
+      var dog = #{@dog.to_json}
+      getLocation(dog);    // form map for new view (print nothing with possibility of put marker)
+    });

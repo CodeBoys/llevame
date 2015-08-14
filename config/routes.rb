@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get 'buscar_ubicacion' => 'dogs#select_location'
+  put 'ubicacion' => 'dogs#set_location'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
