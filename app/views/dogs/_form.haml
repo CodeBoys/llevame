@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-12
-      = form_for @dog, :html => { :role => "form", :multipart => true, id: "new-dog", class: "new_dog dropzone"}, validate: true do |f|
+      = form_for [@user, @dog], :html => { :role => "form", :multipart => true, id: "new-dog", class: "new_dog dropzone"}, validate: true do |f|
         - if @dog.errors.any?
           #error_explanation
             %h2
@@ -11,7 +11,7 @@
               - @dog.errors.full_messages.each do |message|
                 %li= message
         .row
-          .col-md-6
+          .col-md-5
             .form-group
               Nombre del perro
               %br/
@@ -23,62 +23,48 @@
               = f.text_field :age, class: "form-control"
 
             .form-group
+              Señas Particulares
+
+              %br/
+              = f.text_field :particular_signals, class: "form-control"
+          .col-md-7
+
+            .form-group
               Breve descripción acerca de tu mascota
 
               %br/
               = f.text_area :description, class: "form-control", placeholder: "Puedes describir brevemente como es tu mascota o las razones por las cuales lo pones en adopción"
 
-            .form-group
-              Señas Particulares
 
-              %br/
-              = f.text_field :particular_signals, class: "form-control"
-            .form-group
-              Nombre del propietario
-
-              %br/
-              = f.text_field :owner_name, class: "form-control"
-
-          .col-md-6
-
-            .form-group
-              Email del propietario
-
-              %br/
-              = f.text_field :owner_email, class: "form-control"
-            .form-group
-              Confirmar email
-              %br/
-              = f.text_field :owner_email_confirmation, class: "form-control"
-
-            .form-group
-              Telefono del propietario
-              %br/
-              = f.text_field :owner_phone, class: "form-control"
-
-            .form-group
-              Contraseña
-              .small Crea una contraseña para editar/eliminar esta publicación y saber que tu eres el creador de esta publicación
-              %br/
-              = f.text_field :password, class: "form-control"
 
             .form-group
               = f.label :breed_id
               %br/
               = f.collection_select :breed_id, get_breeds, :id, :name, include_blank: false
 
-            .form-group
-              =f.hidden_field :anonymous, value: true
+
+
             .form-actions
               = f.submit 'Ponerlo en adopcion', class: "btn btn-success btn_white_font", id: "sbmtbtn"
               = link_to 'Cancelar', dogs_path, class: "btn btn-danger btn_white_font"
-        .photos
-          %h4 Sube hasta 5 fotos de tu perro para que los usuarios lo conozcan
-          #dropzonePreview
-          %br
+        .row
+          .col-md-12
+            %h4 Selecciona tu ubicacion
+            #map{:style => "width: 100%; height: 500px;"}
+            =f.hidden_field :lat
+            =f.hidden_field :lng
+            -#%input.form-control{:type => "hidden", name: "lat", id: "lat"}
+            -#%input.form-control{:type => "hidden", name: "lng", id: "lng"}
+
+        -#.photos
+          -#%h4 Sube hasta 5 fotos de tu perro para que los usuarios lo conozcan
+          -##dropzonePreview
+          -#%br
 
 :javascript
   $(document).ready(function(){
+    var dog = #{@dog.to_json}
+    getLocation(dog);    // form map for new view (print nothing with possibility of put marker)
     Dropzone.options.newDog = {
       //autoDiscover = false,
       autoProcessQueue: false,
@@ -92,6 +78,7 @@
       init: function() {
         var myDropzone = this;
             //now we will submit the form when the button is clicked
+
             $("#sbmtbtn").on('click',function(e) {
               e.preventDefault();
               e.stopPropagation();
@@ -112,5 +99,6 @@
 
           } // init end
     };
+
   });
 

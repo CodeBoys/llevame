@@ -1,5 +1,7 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy, :select_location]
+  before_action :set_user, only: [:new, :create]
+  before_action :authenticate_user!, only: [:create, :new, :edit]
 
   # GET /dogs
   # GET /dogs.json
@@ -24,19 +26,17 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
-    @dog = Dog.new(dog_params)
+    @dog = @user.dogs.new(dog_params)
     respond_to do |format|
       if @dog.save
-        if params[:photos]
-          params[:photos].first.each do |photo|
-            @dog.photos.create(photo: photo[1])
-          end
-        end
-        format.html { redirect_to action: "select_location", id: @dog.id }
-        format.json { render js: "window.location.href=buscar_ubicacion?id='"+@dog.id+"'"  }
+        #if params[:photos]
+          #params[:photos].first.each do |photo|
+            #@dog.photos.create(photo: photo[1])
+          #end
+        #end
+        format.html { redirect_to new_user_dog_photo_path(@user, @dog) }
       else
         format.html { render :new }
-        format.js { render json: @dog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,6 +59,10 @@ class DogsController < ApplicationController
   end
 
   private
+
+    def set_user
+      @user = current_user
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_dog
       @dog = Dog.find(params[:id])
@@ -66,6 +70,6 @@ class DogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
-      params.require(:dog).permit(:name, :age, :description, :particular_signals, :owner_name, :owner_email, :owner_phone, :lat, :lng, :breed_id, :anonymous, :password)
+      params.require(:dog).permit(:name, :age, :description, :particular_signals, :lat, :lng, :breed_id,)
     end
 end

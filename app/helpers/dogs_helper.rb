@@ -11,4 +11,12 @@ module DogsHelper
     end
 
   end
+
+  def is_user_logged
+    if user_signed_in?
+      link_to "Poner en adopcion", new_user_dog_path(current_user.id), class: "btn btn-success big_button btn_white_font"
+    else
+      link_to "Poner en adopcion", new_user_registration_path, class: "btn btn-success big_button btn_white_font"
+    end
+  end
 end

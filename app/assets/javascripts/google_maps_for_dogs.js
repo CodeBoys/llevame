@@ -55,8 +55,8 @@ function llamarMapa(dog)
 {
   dog.lat = lat;
   dog.lng = lng;
-  document.getElementById("lat").value = lat;
-  document.getElementById("lng").value = lng;
+  document.getElementById("dog_lat").value = lat;
+  document.getElementById("dog_lng").value = lng;
   gmap_form(dog);
 }
 
@@ -130,7 +130,7 @@ function gmap_form(dog) {
   google.maps.event.addListener(handler.getMap(), 'click', function(event) {   //  event for click-put marker on map and pass coordinates to hidden fields in form
     console.log(event.latLng);
     placeMarker(event.latLng);
-    document.getElementById("lat").value = event.latLng.lat();
-    document.getElementById("lng").value = event.latLng.lng();
+    document.getElementById("dog_lat").value = event.latLng.lat();
+    document.getElementById("dog_lng").value = event.latLng.lng();
   });
 }

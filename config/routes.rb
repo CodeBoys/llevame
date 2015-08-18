@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :dogs do
-    resources :photos, only: [:new, :create]
-  end
+  devise_for :users
 
   resources :breeds
+
+  resources :dogs, only: [:index]
+
+  resources :users, only: [:index] do
+    resources :dogs do
+      resources :photos, only: [:new, :create]
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

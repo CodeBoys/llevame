@@ -31,9 +31,9 @@
                 %td
                   =get_first_photo(dog)
                 %td
-                  =link_to "Conocer a #{dog.name}", dog_path(dog.id)
+                  =link_to "Conocer a #{dog.name}", user_dog_path(dog.user.id, dog.id)
     .col-md-4
       =link_to "Buscar para adoptar", "#", class: "btn btn-info big_button btn_white_font"
       %br
       %br
-      =link_to "Poner en adopcion", new_dog_path, class: "btn btn-success big_button btn_white_font"
+      = is_user_logged
