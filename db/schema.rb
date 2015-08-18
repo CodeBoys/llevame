@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818154231) do
+ActiveRecord::Schema.define(version: 20150818203657) do
 
   create_table "breeds", force: true do |t|
     t.string   "name"
@@ -24,16 +24,12 @@ ActiveRecord::Schema.define(version: 20150818154231) do
     t.string   "age"
     t.text     "description"
     t.string   "particular_signals"
-    t.string   "owner_name"
-    t.string   "owner_email"
-    t.string   "owner_phone"
     t.float    "lat"
     t.float    "lng"
-    t.string   "password"
     t.integer  "breed_id"
-    t.boolean  "anonymous"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "dogs", ["breed_id"], name: "index_dogs_on_breed_id"

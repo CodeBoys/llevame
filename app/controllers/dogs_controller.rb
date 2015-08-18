@@ -26,19 +26,17 @@ class DogsController < ApplicationController
   # POST /dogs
   # POST /dogs.json
   def create
-    @dog = Dog.new(dog_params)
+    @dog = @user.dogs.new(dog_params)
     respond_to do |format|
       if @dog.save
-        if params[:photos]
-          params[:photos].first.each do |photo|
-            @dog.photos.create(photo: photo[1])
-          end
-        end
-        format.html { redirect_to action: "select_location", id: @dog.id }
-        format.js { render js: "window.location.href=buscar_ubicacion?id='"+@dog.id+"'"  }
+        #if params[:photos]
+          #params[:photos].first.each do |photo|
+            #@dog.photos.create(photo: photo[1])
+          #end
+        #end
+        format.html { redirect_to new_user_dog_photo_path(@user, @dog) }
       else
         format.html { render :new }
-        format.json { render json: @dog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,6 +70,6 @@ class DogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
-      params.require(:dog).permit(:name, :age, :description, :particular_signals, :owner_name, :owner_email, :owner_phone, :lat, :lng, :breed_id, :anonymous, :password)
+      params.require(:dog).permit(:name, :age, :description, :particular_signals, :lat, :lng, :breed_id,)
     end
 end
