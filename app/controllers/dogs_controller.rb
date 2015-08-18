@@ -33,10 +33,10 @@ class DogsController < ApplicationController
           end
         end
         format.html { redirect_to action: "select_location", id: @dog.id }
-        format.json { render js: "window.location.href=buscar_ubicacion?id='"+@dog.id+"'"  }
+        format.js { render js: "window.location.href=buscar_ubicacion?id='"+@dog.id+"'"  }
       else
         format.html { render :new }
-        format.js { render json: @dog.errors, status: :unprocessable_entity }
+        format.json { render json: @dog.errors, status: :unprocessable_entity }
       end
     end
   end
