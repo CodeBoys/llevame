@@ -13,23 +13,9 @@
     %strong Senas particulares:
     = @dog.particular_signals
   %p
-    %strong Nombre del propietario:
-    = @dog.owner_name
-  %p
-    %strong Email del propietario:
-    = @dog.owner_email
-  %p
-    %strong Telefono del propietario:
-    = @dog.owner_phone
-  %p
-    %strong Lat:
-    = @dog.lat
-  %p
-    %strong Lng:
-    = @dog.lng
-  %p
     %strong Raza:
     = @dog.breed.name
-  = link_to 'Editar', edit_dog_path(@dog)
-  |
-  = link_to 'regresar', root_path
+  -@dog.photos.each do |photo|
+    %br
+    = image_tag photo.photo.url(:mini)
+

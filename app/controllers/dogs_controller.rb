@@ -27,18 +27,16 @@ class DogsController < ApplicationController
   # POST /dogs.json
   def create
     @dog = @user.dogs.new(dog_params)
-    respond_to do |format|
       if @dog.save
         #if params[:photos]
           #params[:photos].first.each do |photo|
             #@dog.photos.create(photo: photo[1])
           #end
         #end
-        format.html { redirect_to new_user_dog_photo_path(@user, @dog) }
+        redirect_to new_user_dog_photo_path(@user, @dog)
       else
-        format.html { render :new }
+        render :new
       end
-    end
   end
 
   # DELETE /dogs/1
@@ -59,13 +57,14 @@ class DogsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_dog
+      @user = current_user
+      @dog = Dog.find(params[:id])
+    end
 
     def set_user
       @user = current_user
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dog
-      @dog = Dog.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

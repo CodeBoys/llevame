@@ -1,0 +1,38 @@
+= form_for [@user, @dog, @photo], :html => { :role => "form", :multipart => true, id: "new-photo", class: "new_user_dog_photo dropzone"}, validate: true do |f|
+  .photos
+    %h4
+      Sube hasta 5 fotos de #{@dog.name} para que las demas personas lo conozcan
+      = link_to 'Continuar', user_dog_path(@user, @dog), class: "btn btn-success btn_white_font"
+    #dropzonePreview
+    %br
+
+
+:javascript
+  $(document).ready(function(){
+    Dropzone.options.newPhoto = {
+      //autoDiscover = false,
+      //autoProcessQueue: false,
+      uploadMultiple: true,
+      parallelUploads: 5,
+      maxFiles: 5,
+      previewsContainer: '#dropzonePreview',
+      paramName: "photos[]",
+
+      // The setting up of the dropzone
+      init: function() {
+        var myDropzone = this;
+            //now we will submit the form when the button is clicked
+
+            //$("#sbmtbtn").on('click',function(e) {
+              //e.preventDefault();
+              //e.stopPropagation();
+              //myDropzone.processQueue();
+            // this will submit your form to the specified action path
+              // after this, your whole form will get submitted with all the inputs + your files and the php code will remain as usual
+        //REMEMBER you DON'T have to call ajax or anything by yourself, dropzone will take care of that
+
+          } // init end
+    };
+
+  });
+
