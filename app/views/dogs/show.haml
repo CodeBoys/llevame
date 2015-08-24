@@ -15,3 +15,7 @@
   %p
     %strong Raza:
     = @dog.breed.name
+  -@dog.photos.each do |photo|
+    %br
+    = image_tag photo.photo.url(:mini)
+
