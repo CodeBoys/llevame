@@ -1,6 +1,5 @@
 class DogsController < ApplicationController
-  before_action :set_dog, only: [:show, :edit, :update, :destroy, :select_location]
-  before_action :set_user, only: [:new, :create]
+  before_action :set_dog, only: [:show, :edit, :update, :destroy, :select_location, :new, :create]
   before_action :authenticate_user!, only: [:create, :new, :edit]
 
   # GET /dogs
@@ -59,12 +58,9 @@ class DogsController < ApplicationController
   end
 
   private
-
-    def set_user
-      @user = current_user
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_dog
+      @user = current_user
       @dog = Dog.find(params[:id])
     end
 
